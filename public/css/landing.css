@@ -1,0 +1,46 @@
+header {
+  --tw-bg-opacity: 1;
+  background-color: rgba(75,85,99,var(--tw-bg-opacity));
+  padding: .75rem
+}
+section {
+  padding: 1rem
+}
+p {
+  font-family: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+  font-size: .875rem;
+  line-height: 1.25rem;
+  padding-left: .75rem;
+  padding-right: .75rem
+}
+h1 {
+  font-size: 3.75rem;
+  line-height: 1;
+  text-align: center;
+  --tw-text-opacity: 1;
+  color: rgba(229,231,235,var(--tw-text-opacity))
+}
+h3 {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  text-align: center;
+  --tw-text-opacity: 1;
+  color: rgba(229,231,235,var(--tw-text-opacity))
+}
+h4 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  margin-bottom: 1rem
+}
+footer {
+  --tw-bg-opacity: 1;
+  background-color: rgba(75,85,99,var(--tw-bg-opacity));
+  display: grid;
+  place-items: center;
+  height: 6rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  text-align: center;
+  --tw-text-opacity: 1;
+  color: rgba(229,231,235,var(--tw-text-opacity))
+}
