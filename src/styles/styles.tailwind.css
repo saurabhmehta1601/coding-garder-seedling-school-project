@@ -100,9 +100,7 @@ select:active,select:focus{
 }
 
 .chart{
-    @apply w-2/4  ;
-}
-.chart>canvas{
+    @apply w-2/4  grid place-items-center bg-red-200;
 }
 
 .info {

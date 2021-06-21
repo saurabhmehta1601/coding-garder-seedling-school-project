@@ -2,6 +2,36 @@ const countrySelect  = document.querySelector('#country')
 const stateSelect  = document.querySelector('#state')
 const chartSection = document.querySelector('.chart-section')
 const chart = document.querySelector('#myChart')
+let recovered,confirmed,deaths
+let selectedCountry,selectedState
+let myChart
+
+// function to render chart 
+const renderChart = (confirmed ,recovered , deaths) =>{  
+    myChart = new Chart(chart,{
+        type:"doughnut",
+        data : {
+            labels : [
+                'Confirmed',
+                'Recovered',
+                'Deaths'
+              ],
+              datasets: [{
+                label: 'Corona patient statics',
+                backgroundColor: ['#f1f51d',"#32a852","#c23c47"],
+                borderColor:["#d6db37" ,"#20ad1d","#9c2832"],
+                data: [confirmed, recovered, deaths],
+              }]
+        },options: {
+            responsive:false ,
+            plugins: {
+                legend : {
+                    align:'center'
+                }
+            }
+        }
+})}
+
 
 // fetch data from api 
 const fetchData = async () =>{
@@ -24,54 +54,62 @@ const fetchData = async () =>{
         countryOption.textContent = country 
         countrySelect.appendChild(countryOption)
     }
-    initiallySeletedCountry = countrySelect.options[countrySelect.selectedIndex].value
-    for(state in jsonData[initiallySeletedCountry]){
+
+    selectedCountry = countrySelect.options[countrySelect.selectedIndex].value
+    
+    for(state in jsonData[selectedCountry]){
         let stateOption = document.createElement('option')
         stateOption.setAttribute('value',state)
         stateOption.textContent = state 
         stateSelect.appendChild(stateOption)
     }
-    console.log(jsonData)
+
+    confirmed = jsonData[selectedCountry]['All'].confirmed
+    recovered = jsonData[selectedCountry]['All'].recovered
+    deaths = jsonData[selectedCountry]['All'].deaths
+
+    renderChart(confirmed,recovered,deaths)
 }
 
 fetchData()
 
-
-// whenever selected country changes change state options
+// whenever selected country changes change state options state will be all by default
 countrySelect.onchange =  () =>{
     stateSelect.innerHTML = ''
     const covidData = JSON.parse(localStorage.getItem('covidData'))
-    const selectedCountry = countrySelect.options[countrySelect.selectedIndex].value
+    selectedCountry = countrySelect.options[countrySelect.selectedIndex].value
     
+
+    // render all states options in state select html based on selected country 
     for(state in covidData[selectedCountry]){
         let stateOption = document.createElement('option')
         stateOption.setAttribute('value',state)
         stateOption.textContent = state
         stateSelect.appendChild(stateOption)
     }
+    selectedState = stateSelect.options[stateSelect.selectedIndex].value
+
+    console.log("country changed")
+    // render new chart after destroying prev on selecting new state 
+    confirmed = covidData[selectedCountry][selectedState].confirmed
+    recovered = covidData[selectedCountry][selectedState].recovered
+    deaths = covidData[selectedCountry][selectedState].deaths
+    
+    myChart.destroy()
+    renderChart(confirmed,recovered,deaths)
+    
 }
 
-// chart section
-const myChart = new Chart(chart,{
-        type:"doughnut",
-        data : {
-            labels : [
-                'Affected',
-                'Recovered',
-                'Deaths'
-              ],
-              datasets: [{
-                label: 'My First dataset',
-                backgroundColor: ['#f1f51d',"#32a852","#c23c47"],
-                borderColor:["#d6db37" ,"#20ad1d","#9c2832"],
-                data: [2, 10, 5],
-              }]
-        },options: {
-            responsive:false ,
-            plugins: {
-                legend : {
-                    
-                }
-            }
-        }
-})
+// render new chart after destroying prev on selecting new state 
+stateSelect.onchange = () =>{
+    const covidData = JSON.parse(localStorage.getItem('covidData'))
+    selectedState = stateSelect.options[stateSelect.selectedIndex].value
+    confirmed = covidData[selectedCountry][selectedState].confirmed
+    recovered = covidData[selectedCountry][selectedState].recovered
+    deaths = covidData[selectedCountry][selectedState].deaths
+    
+    myChart.destroy()
+    renderChart(confirmed,recovered,deaths)
+}
+
+

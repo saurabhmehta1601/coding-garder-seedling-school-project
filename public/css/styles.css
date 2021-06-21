@@ -160,5 +160,9 @@ select:focus {
   padding: 1rem
 }
 .chart {
+  --tw-bg-opacity: 1;
+  background-color: rgba(254,202,202,var(--tw-bg-opacity));
+  display: grid;
+  place-items: center;
   width: 50%
 }
