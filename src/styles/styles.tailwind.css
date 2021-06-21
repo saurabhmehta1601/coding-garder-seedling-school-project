@@ -4,13 +4,87 @@
     box-sizing: border-box;
 }
 
+section{
+    @apply  pb-2  px-4;
+}
+
+p{
+    @apply font-mono text-sm px-3 ;
+}
+
+h1{
+    @apply  text-6xl  text-center  my-0 py-3;
+}
+h2{
+    @apply text-4xl text-center ;
+}
+
+h3{
+    @apply  text-2xl text-center  my-0 pb-3;
+}
+
+h4{
+    @apply text-2xl mb-2 ;
+}
+
+a{
+    @apply text-blue-400 hover:text-blue-900 ;
+}
 
 body{
     min-height: 100vh;
+    padding: 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
 }
 
+header{
+    @apply bg-gray-600 ;
+}
+
 main{
     flex:1 ;
+    display:flex ;
+    flex-direction: column ;
+}
+
+footer{
+    @apply h-24 text-gray-200  bg-gray-600 text-center grid place-items-center;
+}
+
+footer p {
+    @apply text-2xl font-sans; 
+}
+
+form{
+    display:flex ;
+    width:min(90%,960px) ;
+    column-gap : 6em  ;
+    @apply mx-auto justify-center text-center;
+}
+
+form label {
+    @apply text-2xl mb-4;
+}
+
+form input {
+    @apply relative top-2 px-4 py-2;
+}
+
+.title,.tagline{
+    @apply text-gray-200 ;
+}
+
+.tagline{
+    @apply font-sans ;
+}
+
+main h2{
+    @apply font-mono mb-0;
+}
+
+main>div{
+    @apply  flex  bg-yellow-500 ;
+    flex : 1 ;
 }
