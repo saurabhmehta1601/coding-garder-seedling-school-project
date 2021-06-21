@@ -32,11 +32,8 @@ a{
 }
 
 body{
-    min-height: 100vh;
-    padding: 0;
-    margin: 0;
-    display: flex;
     flex-direction: column;
+    @apply font-sans flex h-screen p-0 m-0;
 }
 
 header{
@@ -61,7 +58,7 @@ form{
     display:flex ;
     width:min(90%,960px) ;
     column-gap : 6em  ;
-    @apply mx-auto justify-center text-center;
+    @apply mx-auto justify-center text-center mt-4 mb-8;
 }
 
 form label {
@@ -71,9 +68,9 @@ form label {
 form input {
     @apply relative top-2 px-4 py-2;
 }
-
 .title,.tagline{
     @apply text-gray-200 ;
+
 }
 
 .tagline{
@@ -87,4 +84,27 @@ main h2{
 main>div{
     @apply  flex  bg-yellow-500 ;
     flex : 1 ;
+}
+
+select{
+    min-width:220px ;
+    @apply p-3 text-xl;
+}
+
+select:active,select:focus{
+    outline:none ;
+}
+
+.chart-section{
+    @apply flex p-4 ;
+}
+
+.chart{
+    @apply w-2/4  ;
+}
+.chart>canvas{
+}
+
+.info {
+
 }

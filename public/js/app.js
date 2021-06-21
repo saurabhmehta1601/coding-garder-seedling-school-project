@@ -1,6 +1,7 @@
 const countrySelect  = document.querySelector('#country')
 const stateSelect  = document.querySelector('#state')
-
+const chartSection = document.querySelector('.chart-section')
+const chart = document.querySelector('#myChart')
 
 // fetch data from api 
 const fetchData = async () =>{
@@ -25,13 +26,12 @@ const fetchData = async () =>{
     }
     initiallySeletedCountry = countrySelect.options[countrySelect.selectedIndex].value
     for(state in jsonData[initiallySeletedCountry]){
-        console.log(state)
         let stateOption = document.createElement('option')
         stateOption.setAttribute('value',state)
         stateOption.textContent = state 
         stateSelect.appendChild(stateOption)
     }
-    
+    console.log(jsonData)
 }
 
 fetchData()
@@ -50,3 +50,28 @@ countrySelect.onchange =  () =>{
         stateSelect.appendChild(stateOption)
     }
 }
+
+// chart section
+const myChart = new Chart(chart,{
+        type:"doughnut",
+        data : {
+            labels : [
+                'Affected',
+                'Recovered',
+                'Deaths'
+              ],
+              datasets: [{
+                label: 'My First dataset',
+                backgroundColor: ['#f1f51d',"#32a852","#c23c47"],
+                borderColor:["#d6db37" ,"#20ad1d","#9c2832"],
+                data: [2, 10, 5],
+              }]
+        },options: {
+            responsive:false ,
+            plugins: {
+                legend : {
+                    
+                }
+            }
+        }
+})

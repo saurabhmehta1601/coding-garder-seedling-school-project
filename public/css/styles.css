@@ -54,16 +54,17 @@ a:hover {
   color: rgba(30,58,138,var(--tw-text-opacity))
 }
 body {
-  min-height: 100vh;
-  padding: 0;
-  margin: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
-  flex-direction: column
+  flex-direction: column;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  height: 100vh;
+  margin: 0;
+  padding: 0
 }
 header {
   --tw-bg-opacity: 1;
@@ -107,9 +108,8 @@ form {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center
+  text-align: center;
+  margin: 1rem auto 2rem
 }
 form label {
   font-size: 1.5rem;
@@ -142,4 +142,23 @@ main > div {
   -webkit-box-flex: 1;
   -ms-flex: 1;
   flex: 1
+}
+select {
+  min-width: 220px;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  padding: .75rem
+}
+select:active,
+select:focus {
+  outline: 0
+}
+.chart-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 1rem
+}
+.chart {
+  width: 50%
 }
