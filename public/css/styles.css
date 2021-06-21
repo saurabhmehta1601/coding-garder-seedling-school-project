@@ -160,9 +160,25 @@ select:focus {
   padding: 1rem
 }
 .chart {
-  --tw-bg-opacity: 1;
-  background-color: rgba(254,202,202,var(--tw-bg-opacity));
   display: grid;
   place-items: center;
   width: 50%
+}
+.info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 50%
+}
+.info h3 {
+  font-weight: 300;
+  font-size: 2.25rem;
+  line-height: 2.5rem
+}
+.info > div {
+  padding: 1rem
 }

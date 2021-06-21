@@ -33,6 +33,28 @@ const renderChart = (confirmed ,recovered , deaths) =>{
 })}
 
 
+// update covid report on ui
+const updateReport = () =>{
+    const parsedCovidData = JSON.parse(localStorage.getItem('covidData'))
+    const report = parsedCovidData[selectedCountry][selectedState]
+
+    document.querySelector('#report-country').textContent = `Country : ${selectedCountry}`
+    document.querySelector('#report-state').textContent =  `State : ${selectedState}`
+    document.querySelector('#report-confirmed').textContent =  `Confirmed : ${report.confirmed}`
+    document.querySelector('#report-recovered').textContent =  `Recovered : ${report.recovered}`
+    document.querySelector('#report-deaths').textContent =  `Deaths : ${report.deaths}`
+    if(selectedState === "All"){
+        document.querySelector('#report-location').textContent =  `Location : ${report.location}`
+        document.querySelector('#report-area').textContent =  `Area : ${report.sq_km_area} sq. km`
+        document.querySelector('#report-population').textContent =  `Population : ${report.population}`
+
+    }else{
+        document.querySelector('#report-population').textContent = ''
+        document.querySelector('#report-area').textContent = ''
+        document.querySelector('#report-location').textContent = ''
+    }
+} 
+
 // fetch data from api 
 const fetchData = async () =>{
     let jsonData
@@ -63,6 +85,9 @@ const fetchData = async () =>{
         stateOption.textContent = state 
         stateSelect.appendChild(stateOption)
     }
+    selectedState = stateSelect.options[stateSelect.selectedIndex].value
+
+    updateReport()
 
     confirmed = jsonData[selectedCountry]['All'].confirmed
     recovered = jsonData[selectedCountry]['All'].recovered
@@ -89,7 +114,8 @@ countrySelect.onchange =  () =>{
     }
     selectedState = stateSelect.options[stateSelect.selectedIndex].value
 
-    console.log("country changed")
+    updateReport()
+
     // render new chart after destroying prev on selecting new state 
     confirmed = covidData[selectedCountry][selectedState].confirmed
     recovered = covidData[selectedCountry][selectedState].recovered
@@ -108,6 +134,8 @@ stateSelect.onchange = () =>{
     recovered = covidData[selectedCountry][selectedState].recovered
     deaths = covidData[selectedCountry][selectedState].deaths
     
+    updateReport()
+
     myChart.destroy()
     renderChart(confirmed,recovered,deaths)
 }

@@ -100,9 +100,17 @@ select:active,select:focus{
 }
 
 .chart{
-    @apply w-2/4  grid place-items-center bg-red-200;
+    @apply w-1/2  grid place-items-center ;
 }
 
 .info {
+    @apply w-1/2 flex flex-col;
+}
 
+.info h3{
+    @apply text-4xl  font-light;
+}
+
+.info>div {
+    @apply  p-4;
 }
