@@ -1,8 +1,0 @@
-Goals:
-
-    - [] Build multipage website using html css and javascript
-    - [x] Use a css framework( will be using tailwindcss )
-    - [] Deploy it (will be using firebase hosting)
-    - [] Use trello or github projects for project management 
-    - [] Use REST api 
-    - [] Complete the MVP
